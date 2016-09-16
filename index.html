@@ -1,53 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-	<title>
-	
-	</title>
+	<title>Hangman</title>
+<script type="text/javascript">
+
+var randomWords = ["watermelon", "butter", "wonderful", "extraordinary"];
+
+var word = randomWords[Math.floor(Math.random() * randomWords.length)];
+
+var answerArray = []
+ for (i = 0; i < word.length; i++) {
+ 	answerArray[i] = "_";
+ }
+
+var wordLength = word.length;
+
+while(wordLength > 0){
+	alert(answerArray.join(" "));
+	guess = prompt("Guess a letter");
+	if (guess === null) {
+		break;
+	}
+	else if(guess.length !== 1 ) {
+		alert("Please guess only 1 letter")
+	}
+	else {
+		for(var x = 0; x < word.length; x++) {
+			if (guess === word[x]) {
+				answerArray[x] = guess; //this will put the value of guess into answerArray and test it each time
+				wordLength --;
+			}
+		}
+	}
+}
+
+alert("Yay, you won the game! The word was " + word);
+
+
+</script>	
 </head>
 <body>
 
 </body>
-<script type="text/javascript">
-	
-
-var words = [
-	"javascript",
-	"monkey",
-	"amazing",
-	"pancake"
-];
-
-var word = words[Math.floor(Math.random() * words.length)];
-
-var answerArray = [];
-for (var i = 0; i < word.length; i++) {
-	answerArray[i] = "_";
-}
-
-var remainingLetters = word.length;
-
-while (remainingLetters > 0) {
-	alert(answerArray.join(" "));
-	var guess = prompt("Gess a letter, or click cancel to stop playing");
-	if (guess === null){
-		break;
-	}
-	else if(guess.length !== 1) {
-		alert("Please enter a single letter")
-	}
-	else{
-		for(var j = 0; j < word.length; j++) {
-			if(word[j] === guess) {
-			answerArray[j] = guess;
-			remainingLetters--;
-		}
-		}
-	}
-}
-
-
-alert("Yay, you won the game! The word was " + word)
-
-</script>
 </html>
